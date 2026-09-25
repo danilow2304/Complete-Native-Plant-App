@@ -92,9 +92,9 @@ const plants = [
 ];
 
 const searchInput = document.getElementById("search");
-const soilFilter = document.getElementById("soil-filter");
-const heightFilter = document.getElementById("height-filter");
 const resetButton = document.getElementById("reset-button");
+const sunlightFilter = document.getElementById("sunlight-filter");
+const bloomFilter = document.getElementById("bloom-filter");
 const plantCount = document.getElementById("plant-count");
 const plantContainer = document.getElementById("plant-container");
 
@@ -123,26 +123,17 @@ function displayPlants(plantList) {
     });
 }
 
-// ---- FILTER PLANTS BASED ON SEARCH + DROPDOWNS ----
 function filterPlants() {
     const searchTerm = searchInput.value.toLowerCase();
-    const selectedSoil = soilFilter.value;
-    const selectedHeight = heightFilter.value;
+    const selectedSunlight = sunlightFilter.value;
+    const selectedBloom = bloomFilter.value;
 
     const filteredPlants = plants.filter(plant => {
         const matchesSearch = plant.name.toLowerCase().includes(searchTerm);
-        const matchesSoil = selectedSoil === "all" || plant.soil === selectedSoil;
+        const matchesSunlight = selectedSunlight === "all" || plant.sunlight === selectedSunlight;
+        const matchesBloom = selectedBloom === "all" || plant.bloomSeason.includes(selectedBloom);
 
-        let matchesHeight = true;
-        const firstNumber = parseInt(plant.height); // grabs the first number in "5-12 feet"
-
-        if (selectedHeight === "short") {
-            matchesHeight = firstNumber < 2;
-        } else if (selectedHeight === "tall") {
-            matchesHeight = firstNumber >= 2;
-        }
-
-        return matchesSearch && matchesSoil && matchesHeight;
+        return matchesSearch && matchesSunlight && matchesBloom;
     });
 
     displayPlants(filteredPlants);
@@ -151,13 +142,13 @@ function filterPlants() {
 
 // ---- EVENT LISTENERS ----
 searchInput.addEventListener("input", filterPlants);
-soilFilter.addEventListener("change", filterPlants);
-heightFilter.addEventListener("change", filterPlants);
+sunlightFilter.addEventListener("change", filterPlants);
+bloomFilter.addEventListener("change", filterPlants);
 
 resetButton.addEventListener("click", () => {
     searchInput.value = "";
-    soilFilter.value = "all";
-    heightFilter.value = "all";
+    sunlightFilter.value = "all";
+    bloomFilter.value = "all";
     filterPlants();
 });
 
