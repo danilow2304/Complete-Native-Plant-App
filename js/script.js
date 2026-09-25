@@ -98,6 +98,7 @@ const resetButton = document.getElementById("reset-button");
 const plantCount = document.getElementById("plant-count");
 const plantContainer = document.getElementById("plant-container");
 
+// ---- SHOW PLANTS ON THE PAGE ----
 function displayPlants(plantList) {
     plantContainer.innerHTML = "";
 
@@ -122,6 +123,7 @@ function displayPlants(plantList) {
     });
 }
 
+// ---- FILTER PLANTS BASED ON SEARCH + DROPDOWNS ----
 function filterPlants() {
     const searchTerm = searchInput.value.toLowerCase();
     const selectedSoil = soilFilter.value;
@@ -147,7 +149,7 @@ function filterPlants() {
     plantCount.textContent = `Showing: ${filteredPlants.length} plants`;
 }
 
-// Run these functions whenever the user types or changes a filter
+// ---- EVENT LISTENERS ----
 searchInput.addEventListener("input", filterPlants);
 soilFilter.addEventListener("change", filterPlants);
 heightFilter.addEventListener("change", filterPlants);
@@ -159,5 +161,5 @@ resetButton.addEventListener("click", () => {
     filterPlants();
 });
 
+// ---- SHOW ALL PLANTS WHEN PAGE LOADS ----
 filterPlants();
-
