@@ -19,24 +19,34 @@
         <a href="admin.html">Add Plant</a>
     </nav>
 <main>
+  <section class="details-box">
+    <h2>Plant Search</h2>
 
-    <section class="details-box">
+    <input type="text" id="search" placeholder="Search for a plant...">
 
-        <h2>Plant Details</h2>
+    <select id="soil-filter">
+      <option value="all">All Soil Types</option>
+      <option value="Well-drained soil">Well-drained</option>
+      <option value="Sandy soil">Sandy</option>
+      <option value="Moist soil">Moist</option>
+    </select>
 
-        <input type="text" placeholder="Search for a plant...">
+    <select id="height-filter">
+      <option value="all">All Heights</option>
+      <option value="short">Short (under 2 ft)</option>
+      <option value="tall">Tall (2 ft and up)</option>
+    </select>
 
-        <h3>Sunflower</h3>
+    <button id="reset-button">Reset</button>
 
-        <p>
-            Sunflowers are bright yellow native flowers that attract
-            bees, butterflies, and birds.
-        </p>
+    <p id="plant-count"></p>
 
-        <img src="images/sunflower3.jpg" alt="Sunflower">
-    </section>
-
+    <div id="plant-container"></div>
+  </section>
 </main>
+
+<script src="js/plants.js"></script>
+<script src="js/app.js"></script>
     <footer>
         <p>&copy; 2026 Native Plants of PA.</p>
         <p>Created by Danilo Salazar</p>
